@@ -12,7 +12,6 @@ html{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;  
-
     height: 80vh;
 }
 
@@ -42,27 +41,39 @@ a{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 16px;
     box-shadow: rgba(58, 65, 111, .5) 0 -3px 0 inset;
-
     /*Transition*/
     transition: box-shadow .2s,transform .2s;
-    
 }
 .button:hover {
     transform: translateY(-2px);
+    cursor: pointer;
 }
 
 .button:focus{
     color: radial-gradient(100% 100% at 100% 0, #1f84a0 0, #273493 100%);
 }
 
-#accept{
-    color: rgb(82, 82, 82);
-    background-image: radial-gradient(100% 100% at 100% 0, #4be32d 0, #40eba9 100%);
-    border: none;
+.goback{
+    position: fixed;
+    color: rgb(217, 47, 47);
+    margin: 0 auto;
+    display: block;
+    border-style: solid;
+    border-color: rgb(217, 47, 47);
     padding: 14px 16px 14px 16px;
-    width: 45%;
+    width: auto;
+    background: none;
     border-radius: 8px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
 }
+
+.goback:hover{
+    background-color: rgb(217, 47, 47);
+    color: rgb(22, 22, 22);
+}
+
 .footer{
     position: fixed;
     bottom: 0;

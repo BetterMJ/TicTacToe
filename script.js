@@ -8,6 +8,18 @@ function randombg(){
     document.getElementById("random").style.backgroundImage=img[random];
 }
 
-function doborder(){
-    document.getElementById("1").style.borderColor
+function doborder1(){
+    document.getElementById("1").style.borderColor = "#4be32d";
+    document.getElementById("2").style.borderColor = "#ffffff00";
+    document.getElementById("3").style.borderColor = "#ffffff00";
+}
+function doborder2(){
+    document.getElementById("1").style.borderColor = "#ffffff00";
+    document.getElementById("2").style.borderColor = "#4be32d";
+    document.getElementById("3").style.borderColor = "#ffffff00";
+}
+function doborder3(){
+    document.getElementById("1").style.borderColor = "#ffffff00";
+    document.getElementById("2").style.borderColor = "#ffffff00";
+    document.getElementById("3").style.borderColor = "#4be32d";
 }
