@@ -1,3 +1,87 @@
+const cells = document.querySelectorAll(".cell");
+const currentTurn = document.querySelector(".currentTurn");
+const restartBtn = document.querySelector(".restart");
+    const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+    let fields = ["", "", "", "", "", "", "", "", ""]; // 9 Leere strings, hier können wir das Brett einfach darstellen für den Computer
+    let currentPlayer = "X";
+    let running = false;
+
+    loadGame();
+
+function loadGame(){
+    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    currentTurn.textContent = `${currentPlayer}'s turn`;
+    restartBtn.addEventListener("click", restartGame);
+    running = true;
+}
+
+function checkWinner(){
+    let roundWon = false;
+    for(let i = 0; i < winConditions.length; i++){
+        const condition = winConditions[i];
+        const cellA = fields[condition[0]];
+        const cellB = fields[condition[1]];
+        const cellC = fields[condition[2]];
+
+        if(cellA == "" || cellB == "" || cellC == ""){
+            continue;
+        }
+        if(cellA == cellB && cellB == cellC){
+            roundWon = true;
+            break;
+        }
+    }
+    if(roundWon){
+        alert(`${currentPlayer} wins!`);
+        running = false;
+    }
+    else if(!fields.includes("")){
+        alert("It is a draw!");
+        running = false;
+    }
+    else{
+        changePlayer();
+    }
+}
+
+function cellClicked(){
+    const cellIndex = this.getAttribute("cellIndex");
+    if(fields[cellIndex] != "" || !running){
+        return;
+    }
+    updateCell(this, cellIndex);
+    checkWinner();
+}
+function updateCell(cell, index){
+    fields[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+}
+
+function changePlayer(){
+    currentPlayer = (currentPlayer == "X") ? "O" : "X";
+    currentTurn.textContent = `${currentPlayer}'s turn`;
+}
+
+function restartGame(){
+    currentPlayer = "X";
+    fields = ["", "", "", "", "", "", "", "", ""];
+    currentTurn.textContent = `${currentPlayer}'s turn`;
+    cells.forEach(cell => cell.textContent = "");
+    running = true;
+}
+
+
+
+
 function randombg(){
     var random = Math.floor(Math.random() * 5);
     var img = ["url(img/landscape-7236275_1280.jpg)",
@@ -6,20 +90,4 @@ function randombg(){
                 "url(img/nature-6602056_1280.jpg)",
                 "url(img/sea-7125929_1280.jpg)"];
     document.getElementById("random").style.backgroundImage=img[random];
-}
-
-function doborder1(){
-    document.getElementById("1").style.borderColor = "#4be32d";
-    document.getElementById("2").style.borderColor = "#ffffff00";
-    document.getElementById("3").style.borderColor = "#ffffff00";
-}
-function doborder2(){
-    document.getElementById("1").style.borderColor = "#ffffff00";
-    document.getElementById("2").style.borderColor = "#4be32d";
-    document.getElementById("3").style.borderColor = "#ffffff00";
-}
-function doborder3(){
-    document.getElementById("1").style.borderColor = "#ffffff00";
-    document.getElementById("2").style.borderColor = "#ffffff00";
-    document.getElementById("3").style.borderColor = "#4be32d";
 }
