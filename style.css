@@ -25,6 +25,11 @@ html{
 .navSection h3{
     margin-bottom: 10%;
 }
+.navSection img{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
 a{
     text-decoration: none;
 }
